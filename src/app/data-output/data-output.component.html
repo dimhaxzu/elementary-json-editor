@@ -1,0 +1,16 @@
+<div class="container mt-3">
+    <div class="form-group">
+        <textarea
+            class="form-control"
+            [ngModel]="jsonString"
+            name="jsontextarea"></textarea>
+    </div>
+    <div class="d-flex justify-content-between">
+        <button 
+            class="btn btn-primary"
+            [routerLink]="'/'">To start</button>
+        <button
+            class="btn btn-primary"
+            (click)="saveToFile()">Save to file</button>
+    </div>
+</div>

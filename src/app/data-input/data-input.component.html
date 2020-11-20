@@ -1,0 +1,24 @@
+<div class="container mt-3">
+    <div class="form-group">
+      <textarea
+          class="form-control"
+          [(ngModel)]="jsonString"
+          placeholder="Paste your JSON here"
+          name="jsontextarea"></textarea>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button 
+          class="btn btn-primary"
+          (click)="onSubmit()" 
+          [routerLink]="'/editor'">Send</button>
+      <button
+          class="btn btn-primary"
+          (click)="fileInput.click()">
+          Read from file
+          <input #fileInput 
+                 type="file"
+                 class="d-none"
+                 (change)="onFileload($event.target.files)">
+      </button>  
+    </div>
+</div>

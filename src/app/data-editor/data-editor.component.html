@@ -1,0 +1,40 @@
+<div class="container mt-3"> 
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th></th>
+          <th scope="col" *ngFor="let item of jsonData[0] | keyvalue">{{item.key}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+        <tr *ngFor="let items of jsonData; index as i" cdkDrag>
+              <td class="text-center align-middle" cdkDragHandle style="cursor: move"> 
+                <fa-icon [icon]="faArrowsAltV"></fa-icon>
+              </td>
+              <td class="align-middle" 
+                *ngFor="let item of items | keyvalue; 
+                trackBy: trackByIndex">
+                  <input class="w-100"
+                    [(ngModel)]="items[item.key]" />
+              </td>
+              <td class="text-center align-middle justify-content-md-center"><button
+                    class="btn btn-danger"
+                    (click)="remove(i)"
+              >Remove</button></td>
+        </tr>
+      </tbody>    
+    </table>
+    <div class="d-flex justify-content-between">
+        <button
+          class="btn btn-success"
+          (click)="add()">Add row</button>
+        
+        <button 
+          class="btn btn-primary"
+          (click)="onSubmit()" 
+          [routerLink]="'/result'">Save</button>
+    </div>
+
+</div>
+
