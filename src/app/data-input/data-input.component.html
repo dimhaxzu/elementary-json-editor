@@ -1,16 +1,14 @@
-<div class="container mt-3">
+<div class="container mt-3 h-100">
     <div class="form-group">
       <textarea
+          rows="5"
           class="form-control"
           [(ngModel)]="jsonString"
-          placeholder="Paste your JSON here"
+          placeholder="Paste your JSON or CSV here"
           name="jsontextarea"></textarea>
     </div>
     <div class="d-flex justify-content-between">
-      <button 
-          class="btn btn-primary"
-          (click)="onSubmit()" 
-          [routerLink]="'/editor'">Send</button>
+    
       <button
           class="btn btn-primary"
           (click)="fileInput.click()">
@@ -20,5 +18,24 @@
                  class="d-none"
                  (change)="onFileload($event.target.files)">
       </button>  
+          
+      <div class="form-check form-check-inline">
+        <input type="radio" name="format" id="json" checked
+          class="form-check-input"
+          value="json"
+          (change)="changeFormat($event)">
+        <label for="json" class="form-check-label pr-3">JSON</label>
+        <input type="radio" name="format" id="csv"
+          class="form-check-input"
+          value="csv"
+          (change)="changeFormat($event)">
+        <label for="csv" class="form-check-label">CSV</label> 
+      </div>
+      
+      <button 
+          class="btn btn-primary"
+          (click)="onSubmit()" 
+          [routerLink]="'/editor'">Send</button>
+
     </div>
 </div>

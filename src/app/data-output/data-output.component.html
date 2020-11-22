@@ -1,16 +1,38 @@
 <div class="container mt-3">
     <div class="form-group">
         <textarea
+            rows="5"
             class="form-control"
-            [ngModel]="jsonString"
-            name="jsontextarea"></textarea>
+            [ngModel]="shownString"
+            name="jsontextarea"
+            readonly
+            #textData></textarea>
     </div>
     <div class="d-flex justify-content-between">
-        <button 
+      <button 
             class="btn btn-primary"
             [routerLink]="'/'">To start</button>
+            
+      <div class="form-check form-check-inline">
+        <span class="pr-2">Present as: </span>
+        <input type="radio" name="format" id="json" checked
+          class="form-check-input"
+          value="json"
+          (change)="changeFormat($event)">
+        <label for="json" class="form-check-label pr-3">JSON</label>
+        <input type="radio" name="format" id="csv"
+          class="form-check-input"
+          value="csv"
+          (change)="changeFormat($event)">
+        <label for="csv" class="form-check-label">CSV</label> 
+      </div>
+      <div>
         <button
-            class="btn btn-primary"
-            (click)="saveToFile()">Save to file</button>
+              class="btn btn-primary mr-3"
+              (click)="copyToClipboard(textData)">Copy to clipboard</button>
+        <button
+              class="btn btn-primary"
+              (click)="saveToFile()">Save to file</button>
+        </div>
     </div>
 </div>
